@@ -57,3 +57,21 @@ Hugo 0.80+
 ##### Testing the Product
 
 ##### Deployment
+
+### Using the make file:
+
+The Makefile contains the following commands:
+To run the make file use the `make <command>`
+
+`build`:
+Builds a new version of the website to the `/dist/` folder
+
+`clean`:
+Removes the contents of the `/dist/` folder.
+
+`help`:
+Prints out information of the commands to the terminal.
+
+`post`:
+Creates a new post in the contents/post folder with POST_TITLE and POST_NAME
+set from the ENV variables.
