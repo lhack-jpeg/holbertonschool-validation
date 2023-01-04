@@ -23,6 +23,8 @@ After this project, you should be able to:
 -   Git (command line) in version 2+
 -   [Go Hugo](https://gohugo.io/) v0.80+
 
+## Project State
+
 ## Workflow
 
 The project state currently is using Github actions.
@@ -36,6 +38,18 @@ It is triggered when:
 
 -   Each time there is new code pushed on your repository
 -   Once a day
+
+## Build Workflow
+
+The actions performed at midnight and every time the repo is pushed is:
+
+-   Clone the repo
+-   Run setup.sh to download and install the missing packages
+-   Lint the yaml and shell file
+-   Make a build
+-   Make a post
+-   Print the help from makefile
+-   Clean up the repo.
 
 ## Lifecycle
 
