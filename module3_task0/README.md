@@ -25,8 +25,17 @@ After this project, you should be able to:
 
 ## Workflow
 
-The project state currently is using Github actions has been set up on the project to now test ensure that the repository is being cloned
-and the make file being run with `make help` to ensure it is routed correctly.
+The project state currently is using Github actions.
+
+It performs the following actions:
+
+-   Clones the repo
+-   Position yourself in the correct directory and execute the command `make help` to validate that the Makefile is present and implements the help target.
+
+It is triggered when:
+
+-   Each time there is new code pushed on your repository
+-   Once a day
 
 ## Lifecycle
 
