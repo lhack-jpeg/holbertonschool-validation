@@ -25,7 +25,7 @@ After this project, you should be able to:
 
 ## Workflow
 
-Github actions has been set up on the project to now test ensure that the repository is being cloned
+The project state currently is using Github actions has been set up on the project to now test ensure that the repository is being cloned
 and the make file being run with `make help` to ensure it is routed correctly.
 
 ## Lifecycle
