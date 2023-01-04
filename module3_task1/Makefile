@@ -1,5 +1,8 @@
 HUGO=hugo
 RM=rm -rf
+SHELLCHECK=shellcheck
+YAMLLINT=yamllint
+YQ=yq
 
 build: ## Builds a new website
 	$(HUGO)
@@ -10,6 +13,13 @@ post: ## Creates a new post with the title changed to the ENV value.
 
 clean: ## Remove all files from target folder
 	$(RM) dist/*
+
+lint: ## Lints the yaml file and shell file.
+	$(SHELLCHECK) setup.sh >/dev/null 2>&1 || echo "Lint Failed"
+	$(YAMLLINT) "$(readlink github-workflow.yml)" --no-warnings >/dev/null 2>&1 && echo OK
+	$(YQ) eval '.jobs.*.steps.[].name' "$(readlink github-workflow.yml)" | wc -l
+	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make lint' && echo OK
+	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make integration-test
 
 .SILENT:
 help: ## Target check
