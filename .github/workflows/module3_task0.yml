@@ -15,5 +15,5 @@ jobs:
         uses: actions/checkout@v3
       - name: cd in to correct directory
         run: |
-          cd ${{ github.workspace}}/module3_task0
+          cd ${{ github.workspace}}/module3_task0/
       - run: make build
