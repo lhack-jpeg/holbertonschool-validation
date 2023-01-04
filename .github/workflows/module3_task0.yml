@@ -1,6 +1,9 @@
 name: module3_task0
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  [push]
+  schedule:
+    - cron: '0 0 * * *'
 jobs:
   module3_task0:
     runs-on: ubuntu-latest
@@ -11,4 +14,5 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: cd in to correct directory
         run: |
-          cd ${{ github.workspace}}
+          cd ${{ github.workspace}}/module3_task0
+      - run: make build
