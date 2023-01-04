@@ -48,7 +48,7 @@ The actions performed at midnight and every time the repo is pushed is:
 -   Lint the yaml and shell file
 -   Make a build
 -   Make a post
--   Print the help from makefile
+-   Run server and curl the website
 -   Clean up the repo.
 
 ## Lifecycle
