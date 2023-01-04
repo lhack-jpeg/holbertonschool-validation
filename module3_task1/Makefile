@@ -21,6 +21,10 @@ lint: ## Lints the yaml file and shell file.
 	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make lint' && echo OK
 	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make integration-test
 
+integration-tests: ## Spin up a server and check the localhost url
+	$(HUGO) server -D
+	curl localhost:1313
+
 .SILENT:
 help: ## Target check
 	cat Makefile | grep '##' | tr -d '##' | head -n -1
