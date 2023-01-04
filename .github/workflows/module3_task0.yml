@@ -16,5 +16,5 @@ jobs:
         run: |
           pwd
           ls
-          cd module3_task0/
+          cd module3_task0
           make build
