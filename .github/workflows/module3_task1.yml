@@ -20,7 +20,7 @@ jobs:
           extended: true
       - name: lint
         run: |
-          module3_task1/
+          cd module3_task1/
           make lint
       - name: build
         run: make build
