@@ -19,7 +19,9 @@ jobs:
           hugo-version: "0.91.2"
           extended: true
       - name: lint
-        run: make lint
+        run: |
+          module3_task1/
+          make lint
       - name: build
         run: make build
       - name: post
