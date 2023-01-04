@@ -23,7 +23,7 @@ jobs:
         run: make build
       - name: post
         run: make POST_TITLE="Test Title" POST_NAME="Test-name" post
-      - name: help
-        run: make help
+      - name: Integration tests
+        run: make integration-tests
       - name: clean
         run: make clean
