@@ -12,5 +12,5 @@ clean: ## Remove all files from target folder
 	$(RM) dist/*
 
 .SILENT:
-help: ## Display information on make recipes.
+help: ## Display information on make recipes and helps for target check in github actions
 	cat Makefile | grep '##' | tr -d '##' | head -n -1
