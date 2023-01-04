@@ -13,10 +13,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: run setup.sh
-        run: |
-          cd module3_task1
-          ./setup.sh
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.91.2"
+          extended: true
       - name: lint
         run: make lint
       - name: build
