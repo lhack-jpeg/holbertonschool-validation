@@ -30,7 +30,7 @@ The project state currently is using Github actions.
 It performs the following actions:
 
 -   Clones the repo
--   Position yourself in the correct directory and execute the command `make help` to validate that the Makefile is present and implements the help target.
+-   Position yourself in the correct directory and execute the command `make help` to validate that the Makefile is present and implements the help target check.
 
 It is triggered when:
 
