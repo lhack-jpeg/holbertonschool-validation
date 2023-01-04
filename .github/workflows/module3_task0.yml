@@ -18,4 +18,5 @@ jobs:
           ls
           cd module3_task0
           pwd
+          ls
           make build
