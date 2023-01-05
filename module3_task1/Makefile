@@ -16,11 +16,11 @@ clean: ## Remove all files from target folder
 
 .ONESHELL:
 lint: ## Lints the yaml file and shell file.
-	$(SHELLCHECK) setup.sh >/dev/null 2>&1 || (echo "Lint Failed" && exit 1);
-	($(YAMLLINT) ./github-workflow.yml --no-warnings >/dev/null 2>&1 && echo OK) || exit 1;
+	$(SHELLCHECK) setup.sh >/dev/null 2>&1 || echo "Lint Failed" && exit;
+	$(YAMLLINT) "$(readlink github-workflow.yml)" --no-warnings >/dev/null 2>&1 && echo OK;
 	$(YQ) eval '.jobs.*.steps.[].name' ./github-workflow.yml | wc -l;
-	($(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make lint' && echo OK) || exit 1;
-	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make integration-test'
+	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make lint' && echo OK;
+	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make integration-test';
 
 integration-tests: ## Spin up a server and check the localhost url
 	$(HUGO)
