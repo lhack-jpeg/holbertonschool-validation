@@ -24,11 +24,17 @@ jobs:
           make lint
       - name: build
         run: |
-          pwd
+          cd module3_task1/
           make build
       - name: post
-        run: make POST_TITLE="Test Title" POST_NAME="Test-name" post
+        run: |
+          cd module3_task1/
+          make POST_TITLE="Test Title" POST_NAME="Test-name" post
       - name: Integration tests
-        run: make integration-tests
+        run: |
+          cd module3_task1/
+          make integration-tests
       - name: clean
-        run: make clean
+        run: |
+          cd module3_task1/
+          make clean
