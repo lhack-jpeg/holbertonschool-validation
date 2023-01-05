@@ -22,9 +22,8 @@ lint: ## Lints the yaml file and shell file.
 	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make integration-test'
 
 integration-tests: ## Spin up a server and check the localhost url
-	$(HUGO) server -D
-	curl -I http://localhost:1313/
-	ctrl + c
+	$(HUGO)
+	ls dist/
 
 .SILENT:
 help: ## Target check
