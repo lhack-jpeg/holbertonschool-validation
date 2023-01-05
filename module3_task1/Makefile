@@ -14,11 +14,11 @@ post: ## Creates a new post with the title changed to the ENV value.
 clean: ## Remove all files from target folder
 	$(RM) dist/*
 
-lint: ## Lints the yaml file and shell file.
+lint: ## Lints the shell file and run yamllint on success.
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
 	
 
-yamllint:
+yamllint: ## Yamllint github workflow.
 	$(YAMLLINT) ./github-workflow.yml --no-warnings >/dev/null 2>&1 && echo OK
 	$(YQ) eval '.jobs.*.steps.[].name' ./github-workflow.yml | wc -l
 	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make lint' && echo OK
