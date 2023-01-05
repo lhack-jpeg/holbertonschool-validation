@@ -86,20 +86,15 @@ Hugo 0.80+
 
 ##### Deployment
 
-### Using the make file:
+## following make file use `make` <command>
 
-The Makefile contains the following commands:
-To run the make file use the `make <command>`
+---
 
-`build`:
-Builds a new version of the website to the `/dist/` folder
-
-`clean`:
-Removes the contents of the `/dist/` folder.
-
-`help`:
-Prints out information of the commands to the terminal.
-
-`post`:
-Creates a new post in the contents/post folder with POST_TITLE and POST_NAME
-set from the ENV variables.
+| Files    | Tasks                                                                                                         |
+| -------- | ------------------------------------------------------------------------------------------------------------- |
+| Build    | Generate the website from the markdown and configuration files in the directory dist/.                        |
+| Clean    | Cleanup the content of the directory dist/                                                                    |
+| Post     | Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME. |
+| Lint     | Lints the shell script `setup.sh` and on success runs `make yamllint`                                         |
+| yamllint | Lints the `github-workflow.yml` file.                                                                         |
+| Help     | Print out all build recipes.                                                                                  |
