@@ -4,7 +4,10 @@
 
 ## Learning Objectives
 
-This project aims at showing use cases where a DevOps mindset is bringing value to a software project by automating it, which decreases the amount of manual work and increases the development speed. It focuses on why automation is useful and helps speeding a development lifecycle.
+This project aims at showing use cases where a DevOps mindset is bringing value
+ to a software project by automating it, which decreases the amount of manual
+ work and increases the development speed. It focuses on why automation is useful
+ and helps speeding a development lifecycle.
 
 After this project, you should be able to:
 
@@ -18,7 +21,8 @@ After this project, you should be able to:
 
 - An HTML5-compliant web browser (Firefox, Chrome, Opera, Safari, Edge, etc.)
 - A free account on [GitHub](https://github.com/), referenced as `GitHub Handle`
-- A shell terminal with bash, zsh or ksh, including the standard Unix toolset (ls, cd, etc.)
+- A shell terminal with bash, zsh or ksh, including the standard Unix
+toolset (ls, cd, etc.)
 - [GNU](https://www.gnu.org/software/make/) Make in version 3.81+
 - Git (command line) in version 2+
 - [Go Hugo](https://gohugo.io/) v0.80+
@@ -32,7 +36,8 @@ The project state currently is using Github actions.
 It performs the following actions:
 
 - Clones the repo
-- Position yourself in the correct directory and execute the command `make help` to validate that the Makefile is present and implements the help target check.
+- Position yourself in the correct directory and execute the command `make help`
+to validate that the Makefile is present and implements the help target check.
 
 It is triggered when:
 
@@ -55,7 +60,8 @@ The actions performed at midnight and every time the repo is pushed is:
 
 ### Planning
 
-The team is looking to move the internal wiki on to HUGO as the team is comfortable with it.
+The team is looking to move the internal wiki on to HUGO as the team is
+comfortable with it.
 
 ### Requirements
 
@@ -63,7 +69,8 @@ The team is looking to move the internal wiki on to HUGO as the team is comforta
 
 - An HTML5-compliant web browser (Firefox, Chrome, Opera, Safari, Edge, etc.)
 - A free account on [GitHub](https://github.com/), referenced as `GitHub Handle`
-- A shell terminal with bash, zsh or ksh, including the standard Unix toolset (ls, cd, etc.)
+- A shell terminal with bash, zsh or ksh, including the standard Unix toolset
+(ls, cd, etc.)
 - [GNU](https://www.gnu.org/software/make/) Make in version 3.81+
 - Git (command line) in version 2+
 - [Go Hugo](https://gohugo.io/) v0.80+
@@ -90,11 +97,14 @@ Hugo 0.80+
 
 ---
 
-| Command  | Tasks                                                                                                         |
-| -------- | ------------------------------------------------------------------------------------------------------------- |
-| Build    | Generate the website from the markdown and configuration files in the directory dist/.                        |
-| Clean    | Cleanup the content of the directory dist/                                                                    |
-| Post     | Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME. |
-| Lint     | Lints the shell script `setup.sh` and on success runs `make yamllint` and lints markdown FILES                |
-| yamllint | Lints the `github-workflow.yml` file.                                                                         |
-| Help     | Print out all build recipes.                                                                                  |
+| Command  | Tasks                                  |
+| -------- | ---------------------------------------|
+| Build    | Generate the website from the markdown and configuration files in
+the directory dist/.|
+| Clean    | Cleanup the content of the directory dist/|
+| Post     | Create a new blog post whose filename and title come from the envir
+onment variables POST_TITLE and POST_NAME. |
+| Lint     | Lints the shell script `setup.sh` and on success runs `make yamllint`
+and lints markdown FILES                |
+| yamllint | Lints the `github-workflow.yml` file.|
+| Help     | Print out all build recipes. |
