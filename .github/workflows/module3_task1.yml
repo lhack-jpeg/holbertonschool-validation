@@ -23,7 +23,9 @@ jobs:
           cd module3_task1/
           make lint
       - name: build
-        run: make build
+        run: |
+          pwd
+          make build
       - name: post
         run: make POST_TITLE="Test Title" POST_NAME="Test-name" post
       - name: Integration tests
