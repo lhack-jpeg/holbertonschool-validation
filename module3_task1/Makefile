@@ -16,9 +16,9 @@ clean: ## Remove all files from target folder
 
 lint: ## Lints the yaml file and shell file.
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 || echo "Lint Failed"
-	$(YAMLLINT) ./github-workflow.yml --no-warnings >/dev/null 2>&1 && echo OK
+	$(YAMLLINT) ./github-workflow.yml --no-warnings >/dev/null 2>&1 && echo "echo OK"
 	$(YQ) eval '.jobs.*.steps.[].name' ./github-workflow.yml | wc -l
-	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make lint' && echo OK
+	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make lint' && echo "echo OK"
 	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make integration-test'
 
 integration-tests: ## Spin up a server and check the localhost url
