@@ -23,7 +23,7 @@ lint: ## Lints the yaml file and shell file.
 
 integration-tests: ## Spin up a server and check the localhost url
 	$(HUGO) server -D
-	curl localhost:1313
+	curl http://localhost:1313/
 
 .SILENT:
 help: ## Target check
