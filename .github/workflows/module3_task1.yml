@@ -13,14 +13,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Hugo
-        run: |
-          cd module3_task1/
-          ./setup.sh
       - name: lint
         run: |
           cd module3_task1/
           make lint
+      - name: Setup Hugo
+        run: |
+          cd module3_task1/
+          ./setup.sh
       - name: build
         run: |
           cd module3_task1/
