@@ -16,7 +16,6 @@ jobs:
       - name: Setup Hugo
         run: |
           cd module3_task1/
-          ${{secrets.GITHUB_TOKEN}}
           ./setup.sh
       - name: lint
         run: |
