@@ -104,6 +104,6 @@ Hugo 0.80+
 | p[ost     | Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME. |
 | lint     | Lints the shell script `setup.sh` and on success runs `make yamllint` and lints markdown FILES                |
 | yamllint | Lints the `github-workflow.yml` file.|
-| markdown-lint | lints the `README.md` and `DEPLOY.md` files |
+| markdownlint | lints the `README.md` and `DEPLOY.md` files |
 | package | creates a zip archive of the the latest build and stores it under `awesome-website.zip` |
 | Help     | Print out all build recipes. |

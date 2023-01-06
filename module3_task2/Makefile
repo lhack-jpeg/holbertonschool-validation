@@ -16,7 +16,7 @@ clean: ## Remove all files from target folder
 	$(RM) dist/*
 
 lint: ## Lints the shell file and run yamllint on success.
-	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint && make markdown-lint || echo "Lint Failed"
+	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint && make markdownlint || echo "Lint Failed"
 	
 
 yamllint: ## Yamllint github workflow.
@@ -25,7 +25,7 @@ yamllint: ## Yamllint github workflow.
 	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make lint' && echo OK
 	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make integration-test'
 
-markdown-lint:
+markdownlint:
 	$(MARKDOWN) README.md
 	$(MARKDOWN) DEPLOY.md
 
