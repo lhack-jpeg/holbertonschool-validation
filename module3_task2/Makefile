@@ -36,7 +36,7 @@ integration-tests: ## Spin up a server and check the localhost url
 	ls dist/
 
 unit-tests: ## Runs different makefile recipes
-	make post
+	make POST_TITLE='TEST' POST_NAME='this-is-a-test' post
 	make build
 	make clean
 
@@ -44,7 +44,7 @@ validate: ## Tests ensure it is in correct dir
 	pwd
 
 package: ## Creates a zip archive of the dist dir api binary.
-	zip awesome-website.zip dist/
+	zip awesome-website.zip dist/ dist/index.html
 
 .SILENT:
 help: ## Target check
