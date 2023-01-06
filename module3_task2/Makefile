@@ -16,7 +16,9 @@ clean: ## Remove all files from target folder
 	$(RM) dist/*
 
 lint: ## Lints the shell file and run yamllint on success.
-	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint && make markdownlint || echo "Lint Failed"
+	$(MARKDOWN) README.md
+	$(MARKDOWN) DEPLOY.md
+	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
 	
 
 yamllint: ## Yamllint github workflow.
