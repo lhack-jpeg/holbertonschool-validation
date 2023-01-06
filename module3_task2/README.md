@@ -107,4 +107,5 @@ Hugo 0.80+
 | markdownlint | lints the `README.md` and `DEPLOY.md` files |
 | package | creates a zip archive of the the latest build and stores it under `awesome-website.zip` |
 |unit-tests| runs multiple make recipes. |
+| integration-tests | runs make post and make build |
 | Help     | Print out all build recipes. |
