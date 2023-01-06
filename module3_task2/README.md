@@ -106,4 +106,5 @@ Hugo 0.80+
 | yamllint | Lints the `github-workflow.yml` file.|
 | markdownlint | lints the `README.md` and `DEPLOY.md` files |
 | package | creates a zip archive of the the latest build and stores it under `awesome-website.zip` |
+|unit-tests| runs multiple make recipes. |
 | Help     | Print out all build recipes. |
