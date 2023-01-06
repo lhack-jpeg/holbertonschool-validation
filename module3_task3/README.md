@@ -93,6 +93,8 @@ Hugo 0.80+
 
 ### Deployment
 
+A release is created when a tag is supplied on commit
+
 ## following make file use `make <command>`
 
 ---
