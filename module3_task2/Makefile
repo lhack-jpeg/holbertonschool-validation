@@ -33,6 +33,11 @@ integration-tests: ## Spin up a server and check the localhost url
 	$(HUGO)
 	ls dist/
 
+unit-tests: ## Runs different makefile recipes
+	make post
+	make build
+	make clean
+
 package: ## Creates a zip archive of the dist dir api binary.
 	zip awesome-website.zip dist/
 
