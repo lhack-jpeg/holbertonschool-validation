@@ -17,7 +17,7 @@ To run the application use:
 
 ## How to customise where the logs are written
 
-Logs are created by the github actions
+Logs are created by the github actions and stored in the respective runner
 
 ## How to quickly check the application is running
 
