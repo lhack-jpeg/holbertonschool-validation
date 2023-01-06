@@ -99,9 +99,9 @@ Hugo 0.80+
 
 | Command  | Tasks                                  |
 | -------- | ---------------------------------------|
-| Build    | Generate the website from the markdown and configuration files in the directory dist/.|
-| Clean    | Cleanup the content of the directory dist/|
-| Post     | Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME. |
+| build    | Generate the website from the markdown and configuration files in the directory dist/.|
+| clean    | Cleanup the content of the directory dist/|
+| p[ost     | Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME. |
 | lint     | Lints the shell script `setup.sh` and on success runs `make yamllint` and lints markdown FILES                |
 | yamllint | Lints the `github-workflow.yml` file.|
 | markdown-lint | lints the `README.md` and `DEPLOY.md` files |
