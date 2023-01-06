@@ -44,7 +44,8 @@ validate: ## Tests ensure it is in correct dir
 	pwd
 
 package: ## Creates a zip archive of the dist dir api binary.
-	zip awesome-website.zip dist/ dist/index.html
+	make build
+	zip awesome-website.zip dist/index.html
 
 .SILENT:
 help: ## Target check
