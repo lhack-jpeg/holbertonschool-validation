@@ -38,6 +38,9 @@ unit-tests: ## Runs different makefile recipes
 	make build
 	make clean
 
+validate: ## Tests ensure it is in correct dir
+	pwd
+
 package: ## Creates a zip archive of the dist dir api binary.
 	zip awesome-website.zip dist/
 
