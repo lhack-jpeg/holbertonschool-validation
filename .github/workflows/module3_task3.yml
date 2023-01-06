@@ -32,8 +32,8 @@ jobs:
         run: |
           cd module3_task3/
           make integration-tests
-          make validate
           make unit-tests
+          make validate
           make package
       - name: archive build
         if: ${{ success()}}
