@@ -31,6 +31,7 @@ jobs:
       - name: Integration tests
         run: |
           cd module3_task2/
+          make validate
           make integration-tests
           make unit-tests
           make package
