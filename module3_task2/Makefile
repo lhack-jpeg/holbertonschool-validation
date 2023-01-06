@@ -33,6 +33,9 @@ integration-tests: ## Spin up a server and check the localhost url
 	$(HUGO)
 	ls dist/
 
+package: ## Creates a zip archive of the dist dir api binary.
+	zip awesome-website.zip dist/
+
 .SILENT:
 help: ## Target check
 	cat Makefile | grep '##' | tr -d '##' | head -n -1
