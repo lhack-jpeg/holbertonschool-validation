@@ -56,6 +56,10 @@ The actions performed at midnight and every time the repo is pushed is:
 - Run server and curl the website
 - Clean up the repo.
 
+## Draft release
+
+A new version is made on pull requests with a new tag.
+
 ## Lifecycle
 
 ### Planning
