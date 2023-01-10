@@ -55,7 +55,7 @@ jobs:
       - name: deploy
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: './moduledist'
+          publish-dir: './module3_task5/dist'
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: 'Deploy from GitHub Actions'
