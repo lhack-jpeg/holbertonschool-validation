@@ -12,6 +12,4 @@ jobs:
         uses: actions/checkout@v3
       - name: docker run
         run: |
-          docker run --rm -v -it "$PWD":/module4_task0 -w /module4_task0 golang:1.15.8-buster 
-          cd module4_task0/
-          make build
+          docker run --rm -v "$PWD":/module4_task0 -w /module4_task0 golang:1.15.8-buster echo "$PWD"
