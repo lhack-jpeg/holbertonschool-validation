@@ -1,0 +1,15 @@
+---
+name: module4_task0
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  module4_task0:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: docker run
+        run: |
+          docker run --rm -v $PWD":/module4_task0 -w /module4_task0 golang:1.15.8-buster make build
