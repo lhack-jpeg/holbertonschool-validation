@@ -1,3 +1,5 @@
 dist/
 package/
 awesome-website.zip
+# Local Netlify folder
+.netlify
