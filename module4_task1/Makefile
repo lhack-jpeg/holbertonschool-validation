@@ -6,20 +6,20 @@ YQ=yq
 MARKDOWN=markdownlint
 
 build: ## Builds a new website
-	$(HUGO)
-	touch awesome-api
+	make run-docker $(HUGO); \
+	touch awesome-api;
 
 post: ## Creates a new post with the title changed to the ENV value.
 	$(HUGO) new posts/$(POST_NAME).md
 	sed -i '2s/.*/title: "$(POST_TITLE)"/' content/posts/$(POST_NAME).md
 
 clean: ## Remove all files from target folder
+	make run-docker \
 	$(RM) dist/*
 
 lint: ## Lints the shell file and run yamllint on success.
-	$(MARKDOWN) README.md
-	$(MARKDOWN) DEPLOY.md
-	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
+	make run-docker make markdownlint
+	make run-docker $(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
 	
 
 yamllint: ## Yamllint github workflow.
@@ -34,15 +34,14 @@ markdownlint:
 	$(MARKDOWN) DEPLOY.md
 
 integration-tests: ## Spin up a server and check the localhost url
-	$(HUGO)
-	touch coverage-integrations.out
-	ls dist/
+	make run-rocker $(HUGO); \
+	touch coverage-integrations.out; \
+	ls dist/;
 
 unit-tests: ## Runs different makefile recipes
-	make POST_TITLE='TEST' POST_NAME='this-is-a-test' post
-	make build
-	make clean
-	touch coverage-units.out
+	make run-docker \
+	make POST_TITLE='TEST' POST_NAME='this-is-a-test' post; \
+	touch coverage-units.out;
 
 validate: ## Tests ensure it is in correct dir
 	pwd
@@ -53,7 +52,9 @@ package: ## Creates a zip archive of the dist dir api binary.
 
 build-docker: ## Builds a new docker image form build/Dockerfile
 	docker build -t awesome:build build/
-	docker run -it awesome:build
+
+run-docker:
+	docker run awesome:build
 
 .SILENT:
 help: ## Target check
