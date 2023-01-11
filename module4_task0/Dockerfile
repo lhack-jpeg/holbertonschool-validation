@@ -1,4 +1,4 @@
-FROM golang:1.15.8-buster
+FROM debian:buster
 WORKDIR /module4_task0
 COPY . .
 RUN apt-get update
@@ -15,7 +15,7 @@ RUN npm --version
 RUN curl -L https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_linux-amd64.deb -o hugo.deb
 RUN apt install ./hugo.deb
 RUN npm install -g markdownlint-cli
-RUN RM /usr/local/go/bin/go
+# RUN rm /usr/local/go/bin/go
 RUN which go
 RUN go version
 RUN make build
