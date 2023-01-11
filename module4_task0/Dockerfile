@@ -16,7 +16,7 @@ RUN curl -L https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_ext
 RUN apt install ./hugo.deb
 RUN npm install -g markdownlint-cli
 # RUN rm /usr/local/go/bin/go
-RUN which go
-RUN go version
+# RUN which go
+# RUN go version
 RUN make build
 RUN make package
