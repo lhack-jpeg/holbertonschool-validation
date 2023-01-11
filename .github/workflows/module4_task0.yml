@@ -3,6 +3,8 @@ name: module4_task0
 on:
   push:
     branches: [main, master]
+  schdeule:
+    - cron: "0 0 * * *"
 
 jobs:
   module4_task0:
