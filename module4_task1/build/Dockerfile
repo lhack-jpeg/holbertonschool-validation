@@ -1,6 +1,6 @@
 FROM golang:1.15.8-buster
 WORKDIR /module4_task1
-COPY /module4_task1 .
+COPY ../module4_task1 .
 RUN apt-get update
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.50.1
 ENV NODE_VERSION=16.13.0
