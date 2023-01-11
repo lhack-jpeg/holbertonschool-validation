@@ -8,6 +8,7 @@ MARKDOWN=markdownlint
 build: ## Builds a new website
 	$(HUGO);
 	touch awesome-api;
+	make build-docker
 
 post: ## Creates a new post with the title changed to the ENV value.
 	$(HUGO) new posts/$(POST_NAME).md
@@ -16,10 +17,13 @@ post: ## Creates a new post with the title changed to the ENV value.
 clean: ## Remove all files from target folder
 	$(HUGO)
 	$(RM) dist/*
+	make build-docker
 
 lint: ## Lints the shell file and run yamllint on success.
 	make markdownlint
+	make yamllint
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
+	make build-docker
 	
 
 yamllint: ## Yamllint github workflow.
@@ -36,10 +40,12 @@ markdownlint:
 integration-tests: ## Spin up a server and check the localhost url
 	touch coverage-integrations.out;
 	ls dist/;
+	make build-docker
 
 unit-tests: ## Runs different makefile recipes
 	make POST_TITLE='TEST' POST_NAME='this-is-a-test' post;
 	touch coverage-units.out;
+	make build-docker
 
 validate: ## Tests ensure it is in correct dir
 	pwd
@@ -47,6 +53,7 @@ validate: ## Tests ensure it is in correct dir
 package: ## Creates a zip archive of the dist dir api binary.
 	make build
 	zip awesome-website.zip dist/index.html
+	make build-docker
 
 build-docker: ## Builds a new docker image form build/Dockerfile
 	docker build -t awesome:build -f build/Dockerfile .
