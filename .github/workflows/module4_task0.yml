@@ -19,6 +19,8 @@ jobs:
           cd module4_task0/
           docker build -t my-app .
           docker run -dp 80:80 my-app
+          make build
+          make package
 
       - name: Release
         uses: softprops/action-gh-release@v1
