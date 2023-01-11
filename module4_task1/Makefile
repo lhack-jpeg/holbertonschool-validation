@@ -6,7 +6,7 @@ YQ=yq
 MARKDOWN=markdownlint
 
 build: ## Builds a new website
-	make run-docker $(HUGO); \
+	$(HUGO);
 	touch awesome-api;
 
 post: ## Creates a new post with the title changed to the ENV value.
@@ -14,13 +14,12 @@ post: ## Creates a new post with the title changed to the ENV value.
 	sed -i '2s/.*/title: "$(POST_TITLE)"/' content/posts/$(POST_NAME).md
 
 clean: ## Remove all files from target folder
-	make run-docker \
-	$(HUGO); \
+	$(HUGO)
 	$(RM) dist/*
 
 lint: ## Lints the shell file and run yamllint on success.
-	make run-docker make markdownlint
-	make run-docker $(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
+	make markdownlint
+	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
 	
 
 yamllint: ## Yamllint github workflow.
@@ -35,13 +34,11 @@ markdownlint:
 	$(MARKDOWN) DEPLOY.md
 
 integration-tests: ## Spin up a server and check the localhost url
-	make run-rocker $(HUGO); \
-	touch coverage-integrations.out; \
+	touch coverage-integrations.out;
 	ls dist/;
 
 unit-tests: ## Runs different makefile recipes
-	make run-docker \
-	make POST_TITLE='TEST' POST_NAME='this-is-a-test' post; \
+	make POST_TITLE='TEST' POST_NAME='this-is-a-test' post;
 	touch coverage-units.out;
 
 validate: ## Tests ensure it is in correct dir
@@ -55,7 +52,7 @@ build-docker: ## Builds a new docker image form build/Dockerfile
 	docker build -t awesome:build build/
 
 run-docker:
-	docker run awesome:build
+	docker run awesome:build --workdir /module4_task1
 
 .SILENT:
 help: ## Target check
