@@ -116,3 +116,4 @@ A release is created when a tag is supplied on commit
 | integration-tests | runs make post and make build |
 | validate | prints out the pwd |
 | Help     | Print out all build recipes. |
+| build-docker | Builds a docker image from the dockerfile in the docker folder |
