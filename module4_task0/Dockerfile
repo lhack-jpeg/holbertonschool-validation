@@ -1,5 +1,5 @@
-FROM golang:1.15.8-buster
+FROM dokken/ubuntu-18.04
 WORKDIR /module4_task0
 COPY . .
-CMD ["/bin/sh", "./setup.sh"]
+RUN ./setup.sh
 RUN make build
