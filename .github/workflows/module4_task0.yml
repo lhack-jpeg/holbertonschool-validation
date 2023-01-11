@@ -16,3 +16,4 @@ jobs:
           ./setup.sh
           docker run --rm -v "$PWD":/module4_task0 -w /module4_task0 \
           golang:1.15.8-buster make build
+          echo pwd
