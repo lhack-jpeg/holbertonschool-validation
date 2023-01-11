@@ -52,7 +52,7 @@ package: ## Creates a zip archive of the dist dir api binary.
 	zip awesome-website.zip dist/index.html
 
 build-docker: ## Builds a new docker image form build/Dockerfile
-	docker build -t awesome:build build/Dockerfile
+	docker build -t awesome:build build/
 	docker run -rm -it awesome:build
 
 .SILENT:
