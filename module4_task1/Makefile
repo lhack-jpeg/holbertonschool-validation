@@ -20,7 +20,8 @@ clean: ## Remove all files from target folder
 	make build-docker
 
 lint: ## Lints the shell file and run yamllint on success.
-	make markdownlint
+	$(MARKDOWN) README.md
+	$(MARKDOWN) DEPLOY.md
 	make yamllint
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
 	make build-docker
