@@ -51,6 +51,10 @@ package: ## Creates a zip archive of the dist dir api binary.
 	make build
 	zip awesome-website.zip dist/index.html
 
+build-docker: ## Builds a new docker image form build/Dockerfile
+	docker build -t awesome:build build/Dockerfile
+	docker run -rm -it awesome:build
+
 .SILENT:
 help: ## Target check
 	cat Makefile | grep '##' | tr -d '##' | head -n -1
