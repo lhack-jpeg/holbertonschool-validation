@@ -1,6 +1,7 @@
 FROM golang:1.15.8-buster
 WORKDIR /module4_task0
 COPY . .
+RUN apt-get update
 RUN apt-get -y install nodejs npm
 RUN ./setup.sh
 RUN which go
