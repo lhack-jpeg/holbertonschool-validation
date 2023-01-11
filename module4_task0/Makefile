@@ -7,6 +7,7 @@ MARKDOWN=markdownlint
 
 build: ## Builds a new website
 	$(HUGO)
+	touch awesome-api
 
 post: ## Creates a new post with the title changed to the ENV value.
 	$(HUGO) new posts/$(POST_NAME).md
@@ -34,12 +35,14 @@ markdownlint:
 
 integration-tests: ## Spin up a server and check the localhost url
 	$(HUGO)
+	touch coverage-integrations.out
 	ls dist/
 
 unit-tests: ## Runs different makefile recipes
 	make POST_TITLE='TEST' POST_NAME='this-is-a-test' post
 	make build
 	make clean
+	touch coverage-units.out
 
 validate: ## Tests ensure it is in correct dir
 	pwd
