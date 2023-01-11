@@ -16,3 +16,4 @@ RUN ./setup.sh
 RUN which go
 RUN go version
 RUN make build
+RUN make package
