@@ -53,7 +53,7 @@ package: ## Creates a zip archive of the dist dir api binary.
 
 build-docker: ## Builds a new docker image form build/Dockerfile
 	docker build -t awesome:build build/
-	docker run -rm -it awesome:build
+	docker run -it awesome:build
 
 .SILENT:
 help: ## Target check
