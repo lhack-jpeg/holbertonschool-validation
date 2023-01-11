@@ -23,37 +23,63 @@ After this project, you should be able to:
 - Git (command line) in version 2+
 - [Go Hugo](https://gohugo.io/) v0.80+
 
+## Draft release
+
+A new version is made on pull requests with a new tag.
+
 ## Lifecycle
 
-##### Planning
+### Planning
 
-The team is looking to move the internal wiki on to HUGO as the team is comfortable with it.
+The team is looking to move the internal wiki on to HUGO as the team is
+comfortable with it.
 
-##### Requirements
+### Requirements
 
-###### To run
+### To run
 
 - An HTML5-compliant web browser (Firefox, Chrome, Opera, Safari, Edge, etc.)
 - A free account on [GitHub](https://github.com/), referenced as `GitHub Handle`
-- A shell terminal with bash, zsh or ksh, including the standard Unix toolset (ls, cd, etc.)
+- A shell terminal with bash, zsh or ksh, including the standard Unix toolset
+(ls, cd, etc.)
 - [GNU](https://www.gnu.org/software/make/) Make in version 3.81+
 - Git (command line) in version 2+
 - [Go Hugo](https://gohugo.io/) v0.80+
 
 ---
 
-###### To Edit:
+### To Edit
 
 - Your favourite IDE, emacs, vscode.
 
-##### Product Architecture
+### Product Architecture
 
-##### Developing the Product
+### Developing the Product
 
 The program is generated uising the inbuilt functions provided by HUGO 0.80+.
 The Makefile is built to GNU Make v4.3
 Hugo 0.80+
 
-##### Testing the Product
+### Testing the Product
 
-##### Deployment
+### Deployment
+
+A release is created when a tag is supplied on commit
+
+## following make file use `make <command>`
+
+---
+
+| Command  | Tasks                                  |
+| -------- | ---------------------------------------|
+| build    | Generate the website from the markdown and configuration files in the directory dist/.|
+| clean    | Cleanup the content of the directory dist/|
+| p[ost     | Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME. |
+| lint     | Lints the shell script `setup.sh` and on success runs `make yamllint` and lints markdown FILES                |
+| yamllint | Lints the `github-workflow.yml` file.|
+| markdownlint | lints the `README.md` and `DEPLOY.md` files |
+| package | creates a zip archive of the the latest build and stores it under `awesome-website.zip` |
+|unit-tests| runs multiple make recipes. |
+| integration-tests | runs make post and make build |
+| validate | prints out the pwd |
+| Help     | Print out all build recipes. |
