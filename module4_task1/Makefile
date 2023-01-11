@@ -52,7 +52,7 @@ build-docker: ## Builds a new docker image form build/Dockerfile
 	docker build -t awesome:build build/
 
 run-docker:
-	docker run awesome:build --workdir /module4_task1
+	docker run awesome:build
 
 .SILENT:
 help: ## Target check
