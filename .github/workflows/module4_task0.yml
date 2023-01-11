@@ -13,7 +13,6 @@ jobs:
       - name: docker run
         run: |
           cd module4_task0/
-          ./setup.sh
           docker run --rm -v "$PWD":/module4_task0 -w /module4_task0 \
-          golang:1.15.8-buster make build
+          golang:1.15.8-buster ./setup.sh; make build;
           echo pwd
