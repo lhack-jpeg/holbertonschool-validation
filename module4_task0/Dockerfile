@@ -12,7 +12,9 @@ RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
 ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 RUN node --version
 RUN npm --version
-RUN ./setup.sh
+RUN curl -L https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_linux-amd64.deb -o hugo.deb
+RUN apt install ./hugo.deb
+RUN npm install -g markdownlint-cli
 RUN which go
 RUN go version
 RUN make build
