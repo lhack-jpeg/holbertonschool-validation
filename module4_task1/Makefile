@@ -59,7 +59,7 @@ package: ## Creates a zip archive of the dist dir api binary.
 	make build-docker
 
 build: ## builds a hugo website
-	make build-docker
+	make docker-build
 	make run-docker hugo awesome
 
 .SILENT:
