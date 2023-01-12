@@ -16,7 +16,7 @@ build-docker:
 	docker build -t awesome:build -f docker/Dockerfile .
 
 run-docker:
-	docker run -i awesome:build hugo
+	docker run awesome:build hugo
 
 _awesome:
 	touch awesome-api
