@@ -46,7 +46,7 @@ markdownlint:
 	$(MARKDOWN) DEPLOY.md
 
 integration-tests: ## Spin up a server and check the localhost url
-	hugo
+	$(HUGO)
 	touch coverage-integrations.out
 
 unit-tests: ## Runs different makefile recipes
