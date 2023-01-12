@@ -6,7 +6,7 @@ YQ=yq
 MARKDOWN=markdownlint
 
 build: ## Builds a new website
-	make run-docker _awesome
+	make run-docker _awesome _clean _cleancheck
 
 post: ## Creates a new post with the title changed to the ENV value.
 	$(HUGO) new posts/$(POST_NAME).md
@@ -26,11 +26,13 @@ _hugosite:
 
 .PHONY:
 clean: ## Remove all files from target folder
-	$(RM) ./dist/*
-
+	_clean _cleancheck
 
 _clean:
 	$(RM) dist/*
+
+_cleancheck:
+	/bin/sh -c "ls ~/holbertonschool-validation/module4_task1/dist/;echo 'done'"
 
 _shellcheck:
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
