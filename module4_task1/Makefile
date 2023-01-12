@@ -5,11 +5,12 @@ YAMLLINT=yamllint
 YQ=yq
 MARKDOWN=markdownlint
 
-build-docker: ## Builds a new docker image form build/Dockerfile
-	docker build -t awesome:build -f build/Dockerfile .
-
 build: ## builds a hugo website
-	make run-docker hugo awesome
+	make build-docker
+	make run-docker
+
+build-docker: ## Builds a new docker image form build/Dockerfile
+	docker build -t awesome:build build/
 
 run-docker:
 	docker run awesome:build
@@ -22,15 +23,18 @@ post: ## Creates a new post with the title changed to the ENV value.
 	sed -i '2s/.*/title: "$(POST_TITLE)"/' content/posts/$(POST_NAME).md
 
 clean: ## Remove all files from target folder
+	run-docker _clean
+
+_clean:
 	$(HUGO)
 	$(RM) dist/*
 
-
 lint: ## Lints the shell file and run yamllint on success.
-	$(MARKDOWN) README.md
-	$(MARKDOWN) DEPLOY.md
-	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
+	run-docker markdownlint _shellcheck 
+	
 
+_shellcheck: ## Checks shell script and runs yamllint
+	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
 
 hugo: ## Generates a website
 	$(HUGO)
@@ -46,6 +50,8 @@ markdownlint:
 integration-tests: ## Spin up a server and check the localhost url
 	touch coverage-integrations.out;
 	ls dist/;
+
+_integration-tests:
 
 unit-tests: ## Runs different makefile recipes
 	make POST_TITLE='TEST' POST_NAME='this-is-a-test' post;
