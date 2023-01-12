@@ -7,7 +7,6 @@ MARKDOWN=markdownlint
 
 build: ## Builds a new website
 	make run-docker
-	ls dist/
 	make _awesome
 
 post: ## Creates a new post with the title changed to the ENV value.
@@ -28,12 +27,8 @@ clean: ## delete dist folder
 
 .PHONY:
 _clean: ## Remove all files from target folder
-	echo "first ls"
-	ls dist/
 	$(pwd)
 	$(RM) dist/*
-	echo "ls dist"
-	ls dist/
 
 lint: ## Lints the shell file and run yamllint on success.
 	$(MARKDOWN) README.md
