@@ -44,7 +44,7 @@ markdownlint:
 	$(MARKDOWN) DEPLOY.md
 
 integration-tests: ## Spin up a server and check the localhost url
-	docker run awesome:build sh -c "hugo; make clean; make _integration-tests;"
+	docker run awesome:build sh -c "hugo; make _clean; make _integration-tests;"
 	make _integration-tests;
 
 _integration-tests:
