@@ -51,7 +51,7 @@ _integration-tests:
 	touch coverage-integrations.out
 
 unit-tests: ## Runs different makefile recipes
-	docker run awesome:build sh -c "hugo; make clean; make _unit-tests;"
+	docker run awesome:build sh -c "hugo; make _clean; make _unit-tests;"
 	make _unit-tests;
 
 _unit-tests:
