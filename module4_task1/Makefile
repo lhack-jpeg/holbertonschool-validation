@@ -6,7 +6,7 @@ YQ=yq
 MARKDOWN=markdownlint
 
 build: ## Builds a new website
-	run-docker _awesome
+	run-docker _awesome _hugo
 
 post: ## Creates a new post with the title changed to the ENV value.
 	$(HUGO) new posts/$(POST_NAME).md
@@ -20,6 +20,9 @@ run-docker:
 
 _awesome:
 	touch awesome.api
+
+_hugo:
+	hugo
 
 clean: ## Remove all files from target folder
 	$(RM) dist/*
