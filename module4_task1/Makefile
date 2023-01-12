@@ -5,11 +5,11 @@ YAMLLINT=yamllint
 YQ=yq
 MARKDOWN=markdownlint
 
-build: ## builds a hugo website
-	build-docker
-
 build-docker: ## Builds a new docker image form build/Dockerfile
-    docker build -t awesome:build build/ 
+    docker build -t awesome:build -f build/Dockerfile .
+
+build: ## builds a hugo website
+	run-docker hugo awesome
 
 run-docker:
     docker run awesome:build
