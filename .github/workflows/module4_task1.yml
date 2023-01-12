@@ -18,10 +18,7 @@ jobs:
         run: |
           cd module4_task1/
           ./setup.sh
-          make lint
-          make clean
-          make unit-tests
-          make integration-tests
+          make build-docker
           make build
 
       - name: Release

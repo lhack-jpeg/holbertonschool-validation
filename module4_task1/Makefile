@@ -6,13 +6,13 @@ YQ=yq
 MARKDOWN=markdownlint
 
 build-docker: ## Builds a new docker image form build/Dockerfile
-    docker build -t awesome:build -f build/Dockerfile .
+	docker build -t awesome:build -f build/Dockerfile .
 
 build: ## builds a hugo website
-	run-docker hugo awesome
+	make run-docker hugo awesome
 
 run-docker:
-    docker run awesome:build
+	docker run awesome:build
 
 awesome: ## generates awesome-api file
 	touch awesome-api
