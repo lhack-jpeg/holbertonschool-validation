@@ -29,6 +29,7 @@ clean: ## delete dist folder
 _clean: ## Remove all files from target folder
 	echo "first ls"
 	ls dist/
+	echo $(pwd)
 	$(RM) dist/*
 	echo "ls dist"
 	ls dist/
