@@ -6,8 +6,8 @@ YQ=yq
 MARKDOWN=markdownlint
 
 build: ## Builds a new website
-	make build-docker
-	make run-docker $(HUGO) awesome
+	@docker build -t awesome:build -f build/Dockerfile .
+	docker run $(HUGO) awesome
 
 awesome: ## generates awesome-api file
 	touch awesome-api
