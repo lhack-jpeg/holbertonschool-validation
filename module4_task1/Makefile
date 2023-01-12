@@ -26,13 +26,16 @@ _hugosite:
 
 .PHONY:
 clean: ## Remove all files from target folder
-	_clean _cleancheck
+	docker run awesome:build sh -c "hugo; rm -rf ./dist/*"
 
 _clean:
 	$(RM) dist/*
 
 _cleancheck:
 	/bin/sh -c "ls ~/holbertonschool-validation/module4_task1/dist/;echo 'done'"
+
+lint:
+	docker run awesome:build sh -c "$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed""
 
 _shellcheck:
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
