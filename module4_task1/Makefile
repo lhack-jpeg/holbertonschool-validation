@@ -35,7 +35,7 @@ _cleancheck:
 	/bin/sh -c "ls ~/holbertonschool-validation/module4_task1/dist/;echo 'done'"
 
 lint:
-	docker run awesome:build sh -c "$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed""
+	docker run awesome:build sh -c "$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo 'Lint Failed'"
 
 _shellcheck:
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
