@@ -6,7 +6,8 @@ YQ=yq
 MARKDOWN=markdownlint
 
 build: ## Builds a new website
-	make run-docker _awesome _hugo
+	make run-docker
+	make _awesome
 
 post: ## Creates a new post with the title changed to the ENV value.
 	$(HUGO) new posts/$(POST_NAME).md
@@ -16,15 +17,16 @@ build-docker:
 	docker build -t awesome:build -f docker/Dockerfile .
 
 run-docker:
-	docker run awesome:build
+	docker run awesome:build hugo
 
 _awesome:
 	touch awesome.api
 
-_hugo:
-	$(HUGO)
+clean: ## delete dist folder
+	make run-docker _clean
 
-clean: ## Remove all files from target folder
+.PHONY:
+_clean: ## Remove all files from target folder
 	$(RM) dist/*
 
 lint: ## Lints the shell file and run yamllint on success.
