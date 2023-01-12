@@ -20,8 +20,8 @@ jobs:
           make build-docker
           make run-docker
           make build
-          make clean
           make lint
+          make clean
           make package
 
       - name: Release
