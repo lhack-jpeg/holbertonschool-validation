@@ -7,6 +7,7 @@ MARKDOWN=markdownlint
 
 build: ## Builds a new website
 	make run-docker
+	ls dist/
 	make _awesome
 
 post: ## Creates a new post with the title changed to the ENV value.
