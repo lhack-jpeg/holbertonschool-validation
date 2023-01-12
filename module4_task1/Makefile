@@ -5,58 +5,52 @@ YAMLLINT=yamllint
 YQ=yq
 MARKDOWN=markdownlint
 
-build: ## builds a hugo website
-	make build-docker
-	make run-docker
-
-build-docker: ## Builds a new docker image form build/Dockerfile
-	docker build -t awesome:build build/
-
-run-docker:
-	docker run awesome:build
-
-awesome: ## generates awesome-api file
-	touch awesome-api
+build: ## Builds a new website
+	run-docker _awesome
 
 post: ## Creates a new post with the title changed to the ENV value.
 	$(HUGO) new posts/$(POST_NAME).md
 	sed -i '2s/.*/title: "$(POST_TITLE)"/' content/posts/$(POST_NAME).md
 
-clean: ## Remove all files from target folder
-	run-docker _clean
+build-docker:
+	docker build -t awesome:build -f docker/Dockerfile .
 
-_clean:
-	$(HUGO)
+run-docker:
+	docker run awesome:build
+
+_awesome:
+	touch awesome.api
+
+clean: ## Remove all files from target folder
 	$(RM) dist/*
 
 lint: ## Lints the shell file and run yamllint on success.
-	run-docker markdownlint _shellcheck 
-	
-
-_shellcheck: ## Checks shell script and runs yamllint
+	$(MARKDOWN) README.md
+	$(MARKDOWN) DEPLOY.md
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
-
-hugo: ## Generates a website
-	$(HUGO)
+	
 
 yamllint: ## Yamllint github workflow.
 	$(YAMLLINT) ./github-workflow.yml --no-warnings >/dev/null 2>&1 && echo OK
 	$(YAMLLINT) ./release_drafter.yml --no-warnings >/dev/null 2>&1 && echo OK
+	$(YQ) eval '.jobs.*.steps.[].name' ./github-workflow.yml | wc -l
+	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make lint' && echo OK
+	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make integration-test'
 
 markdownlint:
 	$(MARKDOWN) README.md
 	$(MARKDOWN) DEPLOY.md
 
 integration-tests: ## Spin up a server and check the localhost url
-	touch coverage-integrations.out;
-	ls dist/;
-
-_integration-tests:
+	$(HUGO)
+	touch coverage-integrations.out
+	ls dist/
 
 unit-tests: ## Runs different makefile recipes
-	make POST_TITLE='TEST' POST_NAME='this-is-a-test' post;
-	touch coverage-units.out;
-
+	make POST_TITLE='TEST' POST_NAME='this-is-a-test' post
+	make build
+	make clean
+	touch coverage-units.out
 
 validate: ## Tests ensure it is in correct dir
 	pwd
