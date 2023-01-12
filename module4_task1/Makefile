@@ -1,4 +1,4 @@
-HUGO=hugo
+HUGO=/usr/local/bin/hugo
 RM=rm -rf
 SHELLCHECK=shellcheck
 YAMLLINT=yamllint
@@ -22,7 +22,7 @@ _awesome:
 	touch awesome.api
 
 _hugo:
-	hugo
+	$(HUGO)
 
 clean: ## Remove all files from target folder
 	$(RM) dist/*
