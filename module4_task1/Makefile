@@ -27,6 +27,7 @@ clean: ## delete dist folder
 
 .PHONY:
 _clean: ## Remove all files from target folder
+	echo "first ls"
 	ls dist/
 	$(RM) dist/*
 	echo "ls dist"
