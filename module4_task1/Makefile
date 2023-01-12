@@ -16,20 +16,21 @@ build-docker:
 	docker build -t awesome:build -f docker/Dockerfile .
 
 run-docker:
-	docker run awesome:build hugo
+	docker run -i awesome:build sh -c "hugo;ls ./dist"
 
 _awesome:
 	touch awesome-api
 
+_hugosite:
+	hugo
+
 .PHONY:
 clean: ## Remove all files from target folder
-	make run-docker _clean
-	
+	$(RM) ./dist/*
+
+
 _clean:
 	$(RM) dist/*
-
-lint: ## Lints the shell file and run yamllint on success.
-	make run-docker _shellcheck
 
 _shellcheck:
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
@@ -62,7 +63,7 @@ validate: ## Tests ensure it is in correct dir
 
 package: ## Creates a zip archive of the dist dir api binary.
 	make run-docker _zip
-	
+
 _zip:
 	zip awesome-website.zip dist/index.html
 
