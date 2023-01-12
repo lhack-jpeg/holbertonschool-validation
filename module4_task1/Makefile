@@ -5,7 +5,7 @@ YAMLLINT=yamllint
 YQ=yq
 MARKDOWN=markdownlint
 
-build-docker: ## Builds a new docker image form build/Dockerfile
+docker-build: ## Builds a new docker image form build/Dockerfile
 	docker build -t awesome:build -f build/Dockerfile .
 
 run-docker:
@@ -29,6 +29,8 @@ lint: ## Lints the shell file and run yamllint on success.
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
 	make build-docker
 	
+hugo: ## Generates a website
+	$(HUGO)
 
 yamllint: ## Yamllint github workflow.
 	$(YAMLLINT) ./github-workflow.yml --no-warnings >/dev/null 2>&1 && echo OK
@@ -56,9 +58,9 @@ package: ## Creates a zip archive of the dist dir api binary.
 	zip awesome-website.zip dist/index.html
 	make build-docker
 
-_build: ## builds a hugo website
+build: ## builds a hugo website
 	make build-docker
-	make run-docker $(HUGO) awesome
+	make run-docker hugo awesome
 
 .SILENT:
 help: ## Target check
