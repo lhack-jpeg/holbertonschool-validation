@@ -1,4 +1,4 @@
-HUGO=/usr/local/bin/hugo
+HUGO=hugo
 RM=rm -rf
 SHELLCHECK=shellcheck
 YAMLLINT=yamllint
@@ -6,7 +6,7 @@ YQ=yq
 MARKDOWN=markdownlint
 
 build: ## Builds a new website
-	hugo
+	$(HUGO)
 	make _awesome
 
 post: ## Creates a new post with the title changed to the ENV value.
