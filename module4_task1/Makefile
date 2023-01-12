@@ -6,7 +6,7 @@ YQ=yq
 MARKDOWN=markdownlint
 
 build: ## Builds a new website
-	make run-docker _awesome _clean _cleancheck
+	docker run awesome:build sh -c "hugo; ls ./dist/*"
 
 post: ## Creates a new post with the title changed to the ENV value.
 	$(HUGO) new posts/$(POST_NAME).md
@@ -15,18 +15,12 @@ post: ## Creates a new post with the title changed to the ENV value.
 build-docker:
 	docker build -t awesome:build -f docker/Dockerfile .
 
-run-docker:
-	docker run -i awesome:build sh -c "hugo;ls ./dist"
-
 _awesome:
 	touch awesome-api
 
-_hugosite:
-	hugo
-
 .PHONY:
 clean: ## Remove all files from target folder
-	docker run awesome:build sh -c "hugo; rm -rf ./dist/*"
+	docker run awesome:build sh -c "hugo; make _clean"
 
 _clean:
 	$(RM) dist/*
@@ -35,7 +29,7 @@ _cleancheck:
 	/bin/sh -c "ls ~/holbertonschool-validation/module4_task1/dist/;echo 'done'"
 
 lint:
-	docker run awesome:build sh -c "$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo 'Lint Failed'"
+	docker run awesome:build sh -c "make _shellcheck && make markdownlint || echo 'Lint Failed'"
 
 _shellcheck:
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
@@ -50,13 +44,15 @@ markdownlint:
 	$(MARKDOWN) DEPLOY.md
 
 integration-tests: ## Spin up a server and check the localhost url
-	make run-docker _integration-tests
+	docker run awesome:build sh -c "hugo; make clean; make _integration-tests;"
+	make _integration-tests;
 
 _integration-tests:
 	touch coverage-integrations.out
 
 unit-tests: ## Runs different makefile recipes
-	make run-docker _unit-tests
+	docker run awesome:build sh -c "hugo; make clean; make _unit-tests;"
+	make _unit-tests;
 
 _unit-tests:
 	touch coverage-units.out
@@ -65,7 +61,7 @@ validate: ## Tests ensure it is in correct dir
 	pwd
 
 package: ## Creates a zip archive of the dist dir api binary.
-	make run-docker _zip
+	docker run awesome:build sh -c "hugo; make _zip"
 
 _zip:
 	zip awesome-website.zip dist/index.html
