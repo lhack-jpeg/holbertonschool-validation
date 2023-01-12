@@ -41,8 +41,8 @@ _shellcheck:
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
 
 yamllint: ## Yamllint github workflow.
-	$(YAMLLINT) ./github-workflow.yml --no-warnings >/dev/null 2>&1 && echo OK
-	$(YAMLLINT) ./release_drafter.yml --no-warnings >/dev/null 2>&1 && echo OK
+	$(YAMLLINT) ./github-workflow.yml >/dev/null 2>&1 && echo OK
+	$(YAMLLINT) ./release_drafter.yml >/dev/null 2>&1 && echo OK
 	$(YQ) eval '.jobs.*.steps.[].name' ./github-workflow.yml | wc -l
 	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make lint' && echo OK
 	$(YQ) eval '.jobs.*.steps.[].run' ./github-workflow.yml | grep -q 'make integration-test'
