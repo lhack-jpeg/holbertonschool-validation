@@ -6,7 +6,7 @@ YQ=yq
 MARKDOWN=markdownlint
 
 build: ## Builds a new website
-	make run-docker
+	hugo
 	make _awesome
 
 post: ## Creates a new post with the title changed to the ENV value.
@@ -17,16 +17,14 @@ build-docker:
 	docker build -t awesome:build -f docker/Dockerfile .
 
 run-docker:
-	docker run awesome:build hugo
+	docker run -i awesome:build
 
 _awesome:
 	touch awesome.api
 
-clean: ## delete dist folder
-	make run-docker _clean
 
 .PHONY:
-_clean: ## Remove all files from target folder
+clean: ## Remove all files from target folder
 	$(pwd)
 	$(RM) dist/*
 
@@ -48,9 +46,8 @@ markdownlint:
 	$(MARKDOWN) DEPLOY.md
 
 integration-tests: ## Spin up a server and check the localhost url
-	$(HUGO)
+	hugo
 	touch coverage-integrations.out
-	ls dist/
 
 unit-tests: ## Runs different makefile recipes
 	make POST_TITLE='TEST' POST_NAME='this-is-a-test' post
