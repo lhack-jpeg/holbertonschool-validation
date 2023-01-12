@@ -28,6 +28,8 @@ clean: ## delete dist folder
 .PHONY:
 _clean: ## Remove all files from target folder
 	$(RM) dist/*
+	echo "ls dist"
+	ls dist/
 
 lint: ## Lints the shell file and run yamllint on success.
 	$(MARKDOWN) README.md
