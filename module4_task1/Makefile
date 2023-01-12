@@ -5,9 +5,11 @@ YAMLLINT=yamllint
 YQ=yq
 MARKDOWN=markdownlint
 
-build: ## builds a hugo website
-	make _build-docker
-	make run-docker $(HUGO) awesome
+build-docker: ## Builds a new docker image form build/Dockerfile
+	docker build -t awesome:build -f build/Dockerfile .
+
+run-docker:
+	docker run awesome:build
 
 awesome: ## generates awesome-api file
 	touch awesome-api
@@ -54,11 +56,12 @@ package: ## Creates a zip archive of the dist dir api binary.
 	zip awesome-website.zip dist/index.html
 	make build-docker
 
-_build-docker: ## Builds a new docker image form build/Dockerfile
-	docker build -t awesome:build -f build/Dockerfile .
 
-run-docker:
-	docker run awesome:build
+
+build: ## builds a hugo website
+	echo 'test'
+	make _build-docker
+	make run-docker $(HUGO) awesome
 
 .SILENT:
 help: ## Target check
