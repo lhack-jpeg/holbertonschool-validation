@@ -57,9 +57,7 @@ package: ## Creates a zip archive of the dist dir api binary.
 	make build-docker
 
 build: ## builds a hugo website
-	echo 'test'
-	make build-docker
-	make run-docker $(HUGO) awesome
+	$(HUGO)
 
 .SILENT:
 help: ## Target check
