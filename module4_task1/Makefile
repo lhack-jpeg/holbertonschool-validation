@@ -6,7 +6,7 @@ YQ=yq
 MARKDOWN=markdownlint
 
 build: ## Builds a new website
-	run-docker _awesome
+	make run-docker _awesome
 
 post: ## Creates a new post with the title changed to the ENV value.
 	$(HUGO) new posts/$(POST_NAME).md
@@ -23,10 +23,13 @@ _awesome:
 
 .PHONY:
 clean: ## Remove all files from target folder
-	run-docker $(RM) dist/*
+	make run-docker _clean
+	
+_clean:
+	$(RM) dist/*
 
 lint: ## Lints the shell file and run yamllint on success.
-	run-docker _shellcheck
+	make run-docker _shellcheck
 
 _shellcheck:
 	$(SHELLCHECK) setup.sh >/dev/null 2>&1 && make yamllint || echo "Lint Failed"
@@ -43,16 +46,25 @@ markdownlint:
 	$(MARKDOWN) DEPLOY.md
 
 integration-tests: ## Spin up a server and check the localhost url
-	run-docker touch coverage-integrations.out
+	make run-docker _integration-tests
+
+_integration-tests:
+	touch coverage-integrations.out
 
 unit-tests: ## Runs different makefile recipes
-	run-docker touch coverage-units.out
+	make run-docker _unit-tests
+
+_unit-tests:
+	touch coverage-units.out
 
 validate: ## Tests ensure it is in correct dir
 	pwd
 
 package: ## Creates a zip archive of the dist dir api binary.
-	run docker zip awesome-website.zip dist/index.html
+	make run-docker _zip
+	
+_zip:
+	zip awesome-website.zip dist/index.html
 
 .SILENT:
 help: ## Target check
