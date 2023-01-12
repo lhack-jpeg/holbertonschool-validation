@@ -4,7 +4,7 @@ COPY . .
 RUN apt-get update
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.50.1
 ENV NODE_VERSION=16.13.0
-RUN apt install -y curl zip
+RUN apt-get install -y zip yamllint
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ENV NVM_DIR=/root/.nvm
 RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
