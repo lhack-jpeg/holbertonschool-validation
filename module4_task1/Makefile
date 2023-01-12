@@ -56,11 +56,9 @@ package: ## Creates a zip archive of the dist dir api binary.
 	zip awesome-website.zip dist/index.html
 	make build-docker
 
-
-
 build: ## builds a hugo website
 	echo 'test'
-	make _build-docker
+	make build-docker
 	make run-docker $(HUGO) awesome
 
 .SILENT:
