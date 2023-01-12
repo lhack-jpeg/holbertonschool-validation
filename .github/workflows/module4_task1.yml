@@ -20,6 +20,8 @@ jobs:
           ./setup.sh
           make build-docker
           make build
+          make lint
+          make clean
 
       - name: Release
         uses: softprops/action-gh-release@v1
