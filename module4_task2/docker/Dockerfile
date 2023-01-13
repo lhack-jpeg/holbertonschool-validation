@@ -1,11 +1,11 @@
-FROM golang:1.15.8-buster
+FROM golang:1.15.8-alpine
 WORKDIR /module4_task2
 COPY . .
 RUN apt-get update
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin v1.50.1"
 ENV NODE_VERSION=16.13.0
 # Install dependencies and delete lists
-RUN apt-get install -y zip=3.0-11+b1 yamllint=1.15.01-1 shellcheck=0.5.0-3 --no-install-recommends \
+RUN apt-get install -y zip=3.0-11+b1 yamllint=1.29.0 shellcheck=0.5.0-3 --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 RUN curl -L --create-dirs --output /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
