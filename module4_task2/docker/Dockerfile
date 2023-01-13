@@ -2,7 +2,7 @@ FROM golang:1.15.8-buster
 WORKDIR /module4_task2
 COPY . .
 RUN apt-get update
-RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.50.1
+RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin v1.50.1"
 ENV NODE_VERSION=16.13.0
 # Install dependencies and delete lists
 RUN apt-get install -y zip=3.0-11+b1 yamllint=1.15.01-1 shellcheck=0.5.0-3 --no-install-recommends \
