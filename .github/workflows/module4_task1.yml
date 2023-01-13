@@ -36,19 +36,19 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: upload-package
-          path: module3_task5/awesome-website.zip
+          path: module4_task1/awesome-website.zip
 
-      - name: deploy
-        uses: nwtgck/actions-netlify@v1.2
-        with:
-          publish-dir: "./module4_task1/dist"
-          production-branch: master
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "🎉 Published on"
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
+      # - name: deploy
+      #   uses: nwtgck/actions-netlify@v1.2
+      #   with:
+      #     publish-dir: "./module4_task1/dist"
+      #     production-branch: master
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     deploy-message: "🎉 Published on"
+      #     enable-pull-request-comment: true
+      #     enable-commit-comment: true
+      #     overwrites-pull-request-comment: true
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      #   timeout-minutes: 1
