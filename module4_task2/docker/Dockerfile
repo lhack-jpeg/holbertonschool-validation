@@ -5,7 +5,7 @@ RUN apk update
 RUN apk add zip=3.0-r9 yamllint=1.23.0-r0 shellcheck=0.7.1-r2 curl=7.79.1-r3 \
     hugo=0.79.1-r0 make=4.3-r0 nodejs=14.20.1-r0 nodejs-npm=14.20.1-r0 --no-cache \
     && rm -rf /var/cache/apk/*
-RUN -o curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin v1.50.1"
+RUN /bin/sh -c curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin v1.50.1"
 ENV NODE_VERSION=16.13.0
 # Install dependencies and delete lists
 RUN curl -L --create-dirs --output /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 \
