@@ -2,7 +2,7 @@ FROM golang:1.15.8-alpine
 WORKDIR /module4_task2
 COPY . .
 RUN apk update
-RUN apk add zip=3.0-r10 yamllint=1.28.0-r1 shellcheck=0.9.0-r0 curl=7.87.0-r3 hugo=0.109.0-r0 --no-cache \
+RUN apk add zip yamllint shellcheck curl hugo --no-cache \
     && rm -rf /var/cache/apk/*
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin v1.50.1"
 ENV NODE_VERSION=16.13.0
