@@ -23,7 +23,6 @@ jobs:
           make build
           make unit-tests
           make integration-tests
-          make package
 
       - name: Release
         uses: softprops/action-gh-release@v1
