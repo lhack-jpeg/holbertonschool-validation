@@ -7,6 +7,7 @@ MARKDOWN=markdownlint
 
 build: ## Builds a new website
 	docker run awesome:build sh -c "hugo; ls ./dist/*"
+	$(HUGO)
 
 post: ## Creates a new post with the title changed to the ENV value.
 	$(HUGO) new posts/$(POST_NAME).md
