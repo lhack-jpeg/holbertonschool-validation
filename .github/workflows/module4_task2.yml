@@ -1,5 +1,5 @@
 ---
-name: module4_task1
+name: module4_task2
 on:
   push:
     branches: [main, master]
@@ -9,14 +9,14 @@ on:
     types: [opened, reopened, edited, ready_for_review]
 
 jobs:
-  module4_task1:
+  module4_task2:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: docker run
         run: |
-          cd module4_task1/
+          cd module4_task2/
           make build-docker
           make lint
           make clean
@@ -29,14 +29,14 @@ jobs:
         with:
           tag_name: 1.0.1
           files: |
-            module4_task1/awesome-website.zip
-            module4_task1/DEPLOY.md
+            module4_task2/awesome-website.zip
+            module4_task2/DEPLOY.md
       - name: archive build
         if: ${{ success()}}
         uses: actions/upload-artifact@v3
         with:
           name: upload-package
-          path: module4_task1/awesome-website.zip
+          path: module4_task2/awesome-website.zip
 
       # - name: deploy
       #   uses: nwtgck/actions-netlify@v1.2
