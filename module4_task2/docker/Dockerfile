@@ -4,8 +4,11 @@ COPY . .
 RUN apt-get update
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.50.1
 ENV NODE_VERSION=16.13.0
-RUN apt-get install -y zip yamllint shellcheck
-RUN wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+# Install dependencies and delete lists
+RUN apt-get install -y zip yamllint shellcheck --no-install-recommends \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+RUN curl -L --create-dirs --output /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
 RUN chmod a+x /usr/local/bin/yq
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ENV NVM_DIR=/root/.nvm
@@ -15,8 +18,5 @@ RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
 ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 RUN curl -L https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_linux-amd64.deb -o hugo.deb
 RUN apt install ./hugo.deb
-RUN which hugo
-RUN which yamllint
-RUN which shellcheck
-RUN hugo version
+RUN which hugo yamllint shellcheck
 RUN npm install -g markdownlint-cli@latest
