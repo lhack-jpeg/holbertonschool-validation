@@ -11,7 +11,7 @@ commandTests:
 fileExistenceTests:
   - name: 'plugins.txt'
     path: './jenkins/'
-    shouldExist: True
+    shouldExist: true
 
 fileContestTests:
   - name: 'Plug in tests'
