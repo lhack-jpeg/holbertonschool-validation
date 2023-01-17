@@ -1,0 +1,19 @@
+---
+commandTests:
+  - name: 'Check java version'
+    commmand: java -version
+    expectedOutput: ['openjdk version "11.*']
+  - name: 'Java install location'
+    command: which
+    args: ['java']
+    expectedOutput: ['/usr/bin/java']
+
+fileExistenceTests:
+  - name: 'plugins.txt'
+    path: './jenkins/'
+    shouldExist: True
+
+fileContestTests:
+  - name: 'Plug in tests'
+    path: 'jenkins/plugins.txt'
+    expectedContents: ['*github:*']
